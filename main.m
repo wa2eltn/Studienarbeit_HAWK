@@ -9,8 +9,4 @@ clc ;
 folder=fileparts(which(mfilename));
 addpath(genpath(folder));
 
-%%
 
-if ~isdir('dataset_organized')
-    mkdir('dataset_organized');
-end
