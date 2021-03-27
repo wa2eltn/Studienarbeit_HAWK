@@ -2,7 +2,7 @@ clear all;
 close all;
 clc;
            
-filename= 'E:\HAWK\Database\dataset_organized\healthy\C1P14E1.jpg'; 
+filename= 'E:\HAWK\Database\dataset_original\c5yvn32dzg-2\Photos\C4P29H2.jpg'; 
 rgb = imread(filename);
 
 % 
@@ -14,43 +14,39 @@ rgb = imread(filename);
 
 [w,h]=size(rgb,1,2);
 figure;
-imshow(rgb); 
-% impixelregion;
+imshow(rgb,[]);
+ hsv=rgb2hsv(rgb);
 
-r=rgb(:,:,1);
-g=rgb(:,:,2);
-b=rgb(:,:,3);
+% figure;
+% hi=histogram(hsv(:,:,3));
 
-%reverse green chroma key
 for i=1:w
     for k=1:h
-          if (g(i,k)<(min(r(i,k),b(i,k))*2))
-            g(i,k)=0;
-            r(i,k)=0;
-            b(i,k)=0;
-          end
+        
+        if((hsv(i,k,1)>0.5)||(hsv(i,k,1)<0.09)||(hsv(i,k,2)<0.2)||(hsv(i,k,3)>0.8))
+            hsv(i,k,1)=0;
+            hsv(i,k,2)=0;
+            hsv(i,k,3)=0;
+        end
+        
+        
     end
 end
 
-% figure;
-% imshow(g,[]);
-
-gf = medfilt2(g,[6 6]);
+rgb = hsv2rgb(hsv);
 figure;
-imshow(gf,[]);
+imshow(rgb,[]);
 
-%%
-gfro = bwareaopen(gf, 200);
+
+ rgb(:,:,2) = bwareaopen(rgb(:,:,2), 200);
+g=rgb2gray(rgb);
+
+%  g = edge(g,'Prewitt');
+
+% se = strel('disk',20);
+% g=imclose(g,se);
 figure;
-imshow(gfro,[]);
-
-%%
-rgb(:,:,1)=r;
-rgb(:,:,2)=gfro*255;
-rgb(:,:,3)=b;
-
-% figure;
-% imshow(rgb,[]);
+imshow(g,[]);
 
 
 
