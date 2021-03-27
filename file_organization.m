@@ -34,7 +34,7 @@ annotation_file=table2cell(readtable(annotation_filepath));
 
 %You can here choose between binary labeling or multiclass labeling
 
-label_position = 2; % 2 for binary labeling
+label_position = 3; % 2 for binary labeling
                     % 3 for muulticlass labeling
 
 err_copy_photo=[];
