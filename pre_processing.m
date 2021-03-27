@@ -1,12 +1,34 @@
-clewr all;
+%% initialization
+tic 
+%clening
+clear all;
 close all;
-clc;
+clc ; 
 
+%setting path ( directories and subdirectories )
+folder=fileparts(which(mfilename));
+addpath(genpath(folder));
 
-filename= 'E:\HAWK\Database\dataset_original\c5yvn32dzg-2\Photos\C2P23E2.jpg'; 
-rgb = imread(filename);
+disp('Initialization time');
+toc
+%% image pre processing
 
-figure;
-imshow(rgb);
+%get photos path
+photos_path = uigetdir('dataset_original\c5yvn32dzg-2\Photos','Please select the photos folder');
 
-rgb=pre_processing(rgb);
+filelist = dir(fullfile(photos_path, '**\*.*'));  %get list of files and folders in any subfolder
+filelist = filelist(~[filelist.isdir]); 
+
+for i=1:size(filelist,1)
+    
+ filename=[ filelist(1).folder filesep filelist(1).name];
+ rgb=imread(filename);
+ rgb=single_image_pre_processing(rgb);
+ 
+ imwrite(rgb,filename)
+   
+ disp(strjoin(["Photo " string(i) "/" string(size(filelist,1)) " Photo name : "  filelist(i).name],...
+        ''))
+      
+end
+
