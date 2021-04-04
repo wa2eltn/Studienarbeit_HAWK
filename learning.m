@@ -1,18 +1,20 @@
-% clear all;
-% close all;
-% clc;
+clear all;
+close all;
+clc;
 
-net=googlenet();
+% net=googlenet();
+% 
+% run deep network to modify layers 142 and 144
+% deepNetworkDesigner;
+% 
+% pause;
+% tap any to continue
 
-%run deep network to modify layers 142 and 144
-deepNetworkDesigner;
-
-pause;
-%tap any to continue
-
-hawk=lgraph_1;  % exported (modified) network from deepNetworkDesigner. 
+ 
 
 load('hawk.mat');
+hawk=lgraph_1;  % exported (modified) network from deepNetworkDesigner.
+
 
 imagepath=fullfile('C:\Users\chihi\OneDrive\Bureau\Wael\Programm','dataset_organized');
 imds=imageDatastore(imagepath,'IncludeSubfolders',true,'LabelSource','foldernames');
@@ -26,7 +28,7 @@ opt=trainingOptions('sgdm','InitialLearnRate',0.001,...
     'MiniBatchSize',64,...
     'ValidationPatience',3,...
     'ValidationFrequency',10,...
-    'ExecutionEnvironment','cpu');
+    'ExecutionEnvironment','gpu');
 hawk=trainNetwork(TrainingData,hawk,opt);
 
 
