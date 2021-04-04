@@ -22,7 +22,7 @@ filelist = filelist(~[filelist.isdir]);
 err_log=[];
 for i=1:size(filelist,1)
     try
- filename=[ filelist(1).folder filesep filelist(i).name];
+ filename=[ filelist(i).folder filesep filelist(i).name];
  rgb=imread(filename);
  rgb=single_image_pre_processing(rgb);
  
