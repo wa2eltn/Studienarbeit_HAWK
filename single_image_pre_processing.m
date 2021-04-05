@@ -15,8 +15,8 @@ BW=imfill(BW,'holes');
 rgb_out = rgb;
 rgb_out(repmat(~BW,[1 1 3])) = 0;
 
-r=rgb_out(:,:,1);
-g=rgb_out(:,:,2);
+r=rgb(:,:,1);
+g=rgb(:,:,2);
 
 diff_out=abs(r-g);
 
