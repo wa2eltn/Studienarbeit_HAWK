@@ -24,7 +24,7 @@ for i=1:size(filelist,1)
     try
  filename=[ filelist(i).folder filesep filelist(i).name];
  rgb=imread(filename);
- [rgb,diff_out]=single_image_pre_processing(rgb);
+ [bw,masked]=single_image_pre_processing2(rgb);
  
  imwrite(diff_out,filename)
    
