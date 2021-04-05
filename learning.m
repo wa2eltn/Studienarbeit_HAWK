@@ -2,17 +2,17 @@ clear all;
 close all;
 clc;
 
-% net=googlenet();
+  net=googlenet();
 % 
 % run deep network to modify layers 142 and 144
-% deepNetworkDesigner;
+  deepNetworkDesigner;
 % 
-% pause;
+%  pause;
 % tap any to continue
 
  
-
-load('hawk.mat');
+save('network.mat');
+load('network.mat');
 hawk=lgraph_1;  % exported (modified) network from deepNetworkDesigner.
 
 
