@@ -26,7 +26,7 @@ for i=1:size(filelist,1)
  rgb=imread(filename);
  [bw,masked]=single_image_pre_processing2(rgb);
  
- imwrite(diff_out,filename)
+ imwrite(masked,filename)
    
  disp(strjoin(["Photo " string(i) "/" string(size(filelist,1)) " Photo name : "  filelist(i).name],...
         ''))
