@@ -18,7 +18,9 @@ rgb_out(repmat(~BW,[1 1 3])) = 0;
 r=rgb(:,:,1);
 g=rgb(:,:,2);
 
-diff_out=abs(r-g);
+diff_out(:,:,1)=abs(r-g);
+diff_out(:,:,2)=abs(r-g);
+diff_out(:,:,3)=abs(r-g);
 
 end
 
